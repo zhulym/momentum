@@ -1,8 +1,6 @@
-@charset "UTF-8";
 @font-face {
   font-family: "Arial-MT";
   src: url("../assets/fonts/Arial-MT.woff");
-  /* Путь к файлу со шрифтом */
 }
 
 * {
@@ -14,15 +12,21 @@
 
 body {
   min-width: 480px;
-  min-height: 100vh;
+  max-width: 100%;
+  width: 100%;
+  height: 100vh;
   font-family: "Arial", sans-serif;
   font-size: 16px;
   color: #fff;
+  text-shadow: 0 0 5px white;
   text-align: center;
-  background: url("../assets/img/bg.jpg") center/cover, rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
+  background-repeat: no-repeat;
+  background-size: cover;
   background-blend-mode: multiply;
   -webkit-transition: background-image 1s ease-in-out;
   transition: background-image 1s ease-in-out;
+  overflow: hidden;
 }
 
 .header {
@@ -36,7 +40,7 @@ body {
       -ms-flex-align: start;
           align-items: flex-start;
   width: 100%;
-  height: 30vh;
+  height: 25vh;
   min-height: 220px;
   padding: 20px;
 }
@@ -234,7 +238,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  height: 40vh;
+  height: 35vh;
   min-height: 260px;
   padding: 20px;
 }
@@ -270,6 +274,15 @@ body {
   margin-bottom: 20px;
 }
 
+.great__wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .greeting-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -303,7 +316,8 @@ body {
   padding: 10px;
   font-size: 40px;
   text-align: left;
-  color: #fff;
+  color: white;
+  text-shadow: 0 0 5px white;
   background-color: transparent;
   border: 0;
   outline: 0;
@@ -311,22 +325,38 @@ body {
 
 .name::-webkit-input-placeholder {
   color: #fff;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .name:-ms-input-placeholder {
   color: #fff;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .name::-ms-input-placeholder {
   color: #fff;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .name::placeholder {
   color: #fff;
-  opacity: 0.6;
+  opacity: 0.4;
+}
+
+.name:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+.name:focus:-ms-input-placeholder {
+  opacity: 0;
+}
+
+.name:focus::-ms-input-placeholder {
+  opacity: 0;
+}
+
+.name:focus::placeholder {
+  opacity: 0;
 }
 
 .footer {
