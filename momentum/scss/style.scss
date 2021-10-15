@@ -37,13 +37,126 @@ body {
   padding: 20px;
 }
 
+/*=========================== PLAYER ===========================*/
+
+.player__container {
+  display: flex;
+  width: 50%;
+  background-color: #0745626b;
+  border-radius: 10px;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
 .player-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 120px;
-  margin-bottom: 28px;
+  column-gap: 5px;
 }
+
+.audio__progress {
+  display: block !important;
+  position: relative !important;
+  width: 65% !important;
+  flex-grow: 0.75 !important;
+}
+
+.progress__range {
+  -webkit-appearance: none !important;
+  width: 100% !important;
+  height: 8px !important;
+  border-radius: 5px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  outline: none !important;
+  opacity: 0.7;
+  margin-right: 1rem !important;
+  margin-left: 1rem !important;
+}
+
+.progress__range::after {
+  content: "" !important;
+  position: absolute !important;
+  width: 0% !important;
+  height: 10px !important;
+  border-radius: 10rem !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+}
+
+.progress__range::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  cursor: pointer !important;
+}
+
+.progress__range::-moz-range-thumb {
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  cursor: pointer !important;
+}
+///////////////////////////////////////
+
+.volume__icon i {
+  color: #c7cbcd;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  margin-left: 2rem;
+  text-shadow: none;
+}
+
+.fal.fa-volume-up {
+  color: #c7cbcd;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  margin-left: 2rem;
+  text-shadow: none;
+}
+
+.volume__progress {
+  display: flex;
+  align-items: center;
+}
+
+.volume__range-wrap {
+  display: block !important;
+}
+
+.volume__range {
+  -webkit-appearance: none !important;
+  width: 100% !important;
+  height: 8px !important;
+  border-radius: 5px !important;
+  background: #fff !important;
+  outline: none !important;
+  opacity: 0.7;
+}
+
+.volume__range::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  cursor: pointer !important;
+}
+
+.volume__range::-moz-range-thumb {
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  cursor: pointer !important;
+}
+///////////////////////////////
 
 .play-list {
   text-align: left;
@@ -73,6 +186,10 @@ body {
 
 .item-active::before {
   color: #c5b358;
+}
+
+.player-icon {
+  color: transparent;
 }
 
 .player-icon,
@@ -123,7 +240,11 @@ body {
 .play-next {
   background-image: url("../assets/svg/play-next.svg");
 }
+.play-range {
+  margin-left: 10px;
+}
 
+/*=========================== WEATHER ===========================*/
 .weather {
   display: flex;
   flex-direction: column;
