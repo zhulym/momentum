@@ -1,4 +1,5 @@
 import { getTimeOfDay } from '../Greeting/greeting.js';
+import { getRandomNum } from '../../helpers/index.js';
 
 export const slidePrev = document.querySelector('.slide-prev');
 export const slideNext = document.querySelector('.slide-next');
@@ -37,10 +38,4 @@ export function setBg() {
     body.style.backgroundImage = `url(${src})`;
   };
   isArrowClick = false;
-}
-
-function getRandomNum(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

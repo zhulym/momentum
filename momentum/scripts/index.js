@@ -3,6 +3,7 @@ import { showDate } from './components/DateTime/date.js';
 import { nameContainer, getName, setName, showGreeting } from './components/Greeting/greeting.js';
 import { setBg, slideNext, slidePrev, getSlideNext, getSlidePrev } from './components/Slider/slider.js';
 import { weatherCity, getCityWeather, getWeather } from './components/Weather/weather.js';
+import { changeQuoteBtn, getQuote } from './components/Quotes/quotes.js';
 
 setTimeout(function updateTime() {
   showTime();
@@ -20,6 +21,10 @@ slidePrev.addEventListener('click', getSlidePrev)
 
 weatherCity.addEventListener('change', getCityWeather)
 window.addEventListener('load', getWeather);
+
+changeQuoteBtn.addEventListener('click', getQuote);
+window.addEventListener('load', getQuote);
+
 
 
 
