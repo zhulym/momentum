@@ -6,10 +6,8 @@ export const getName = () => {
 }
 
 export const setName = () => {
-  nameContainer.value = localStorage.getItem('userName');
+  nameContainer.value = `${localStorage.getItem('userName')}!!!`;
 }
-
-
 
 export const showGreeting = () => {
   const greeting = getTimeOfDay();

@@ -137,6 +137,8 @@ body {
 
 .weather-error {
   margin-top: -10px;
+  color: rgb(220, 20, 20);
+  letter-spacing: 1px;
 }
 
 .description-container {
@@ -158,10 +160,12 @@ body {
   font-size: 20px;
   line-height: 24px;
   color: #fff;
+  text-shadow: 0 0 5px white;
   border: 0;
   outline: 0;
   border-bottom: 1px solid #fff;
   background-color: transparent;
+  text-transform: capitalize;
 }
 
 .city::placeholder {

@@ -1,8 +1,8 @@
 import { getTimeOfDay } from '../Greeting/greeting.js';
 
-const body = document.body;
 export const slidePrev = document.querySelector('.slide-prev');
 export const slideNext = document.querySelector('.slide-next');
+const body = document.body;
 const minNum = 1;
 const maxNum = 20;
 let currNum;
@@ -27,9 +27,10 @@ export function setBg() {
     currNum = nextNum;
   }
   let numOfImg = currNum < 10 ? `0${currNum}` : currNum;
-  let timeString = getTimeOfDay();
-  let timeOfDay = timeString.split(' ')[1];
-  let src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay.slice(0, timeOfDay.length - 1)}/${numOfImg}.jpg`;
+  let timeString = getTimeOfDay(); // 'Good afternoon!'
+  let timeOfDay = timeString.split(' ')[1]; // 'afternoon!'
+  let currentPeriod = timeOfDay === 'afternoon!' ? timeOfDay = 'day!' : timeOfDay; //replace folder name
+  let src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${currentPeriod.slice(0, currentPeriod.length - 1)}/${numOfImg}.jpg`;
   const img = new Image();
   img.src = src;
   img.onload = () => {
