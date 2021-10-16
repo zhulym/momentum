@@ -27,8 +27,15 @@ body {
   overflow: hidden;
 }
 
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
 .header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
@@ -40,9 +47,17 @@ body {
 /*=========================== PLAYER ===========================*/
 
 .player__container {
-  display: flex;
-  width: 50%;
   background-color: #0745626b;
+  width: 50%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.controls__container {
+  display: flex;
+  width: 100%;
   border-radius: 10px;
   padding: 1rem;
   justify-content: space-between;
@@ -56,10 +71,11 @@ body {
 }
 
 .audio__progress {
-  display: block !important;
   position: relative !important;
   width: 65% !important;
   flex-grow: 0.75 !important;
+  display: flex;
+  align-items: center;
 }
 
 .progress__range {
@@ -70,7 +86,6 @@ body {
   background: rgba(255, 255, 255, 0.5) !important;
   outline: none !important;
   opacity: 0.7;
-  margin-right: 1rem !important;
   margin-left: 1rem !important;
 }
 
@@ -101,7 +116,31 @@ body {
   cursor: pointer !important;
 }
 ///////////////////////////////////////
+.play-list__container {
+  display: flex;
+  justify-content: space-between;
+}
+.song__title {
+  align-self: center;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+.time__current {
+  position: absolute;
+  top: 80%;
+  left: 5%;
+  font-size: 0.8rem;
+}
+.time__end {
+  position: absolute;
+  right: 0%;
+  top: 80%;
+  font-size: 0.8rem;
+}
 
+.track-wrap.active {
+  color: rgb(118, 185, 124) !important;
+}
 .volume__icon i {
   color: #c7cbcd;
   font-size: 1.5rem;
@@ -160,6 +199,17 @@ body {
 
 .play-list {
   text-align: left;
+  list-style-type: none;
+}
+.play-list li {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  max-height: 1.5rem;
+}
+
+.play-list button {
+  transform: scale(0.5);
 }
 
 .play-item {
@@ -190,6 +240,7 @@ body {
 
 .player-icon {
   color: transparent;
+  transform: scale(0.9);
 }
 
 .player-icon,

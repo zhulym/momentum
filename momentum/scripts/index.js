@@ -38,23 +38,35 @@ const nextBtn = document.querySelector('.play-next');
 
 const timeCurrent = document.querySelector('.time__current');
 const timeEnd = document.querySelector('.time__end');
+const playlistContainer = document.querySelector('.play-list');
+const songTitle = document.querySelector('.song__title');
+const listItems = document.getElementsByClassName('track-wrap');
 
 let buffer = document.querySelector('.time__buffer');
-
-
+const playlist = [
+  'Aqua Caelestis',
+  'Ennio Morricone',
+  'River Flows In You',
+  'Summer Wind'
+]
 
 let isPlay = false;
 let duration = audioItem.duration;
 let flagVolume = 1;
+let numTrack = 0;
 
 playBtn.addEventListener("click", playStop);
 
 function playStop() {
   if (isPlay === false) {
+    if (playlist[numTrack] !== songTitle.textContent) audioItem.src = `./assets/sounds/${playlist[numTrack]}.mp3`;
+    listItems[numTrack].classList.add('active');
+    songTitle.textContent = playlist[numTrack];
     audioItem.play();
     playBtn.classList.toggle('pause');
     isPlay = true;
   } else {
+    Array.from(listItems).forEach(el => el.classList.remove('active'));
     audioItem.pause();
     playBtn.classList.toggle('pause');
     isPlay = false;
@@ -62,6 +74,28 @@ function playStop() {
 }
 
 audioItem.addEventListener("timeupdate", showProgress)
+
+nextBtn.addEventListener('click', function () {
+  if (numTrack === listItems.length - 1) numTrack = 0;
+  else numTrack++;
+  handlePrevNext();
+})
+prevBtn.addEventListener('click', function () {
+  if (numTrack === 0) numTrack = listItems.length - 1;
+  else numTrack--;
+  handlePrevNext();
+})
+
+function handlePrevNext() {
+  Array.from(listItems).forEach(el => el.classList.remove('active'));
+  audioItem.pause();
+  audioItem.src = `./assets/sounds/${playlist[numTrack]}.mp3`;
+  listItems[numTrack].classList.add('active');
+  songTitle.textContent = playlist[numTrack];
+  if (isPlay) {
+    audioItem.play();
+  }
+}
 
 function showProgress() {
   timeCurrent.textContent = getTime(audioItem.currentTime);
@@ -94,7 +128,6 @@ function getTime(time) {
   let seconds = Math.floor(time - (minutes * 60))
   let minuteValue;
   let secondsValue;
-
   if (minutes < 10) {
     minuteValue = '0' + minutes;
   } else {
@@ -106,7 +139,7 @@ function getTime(time) {
   } else {
     secondsValue = seconds;
   }
-  return minuteValue + ':' + secondsValue
+  return isNaN(time) ? '00:00' : minuteValue + ':' + secondsValue
 }
 
 volumeRange.addEventListener("input", function () {
@@ -130,11 +163,9 @@ volumeRange.addEventListener("input", function () {
 });
 
 volumeIcon.addEventListener("click", function () {
-  if (flagVolume < 3) {
-    flagVolume++;
-  } else {
-    flagVolume = 1;
-  }
+  let color;
+  if (flagVolume < 3) flagVolume++;
+  else flagVolume = 1;
 
   switch (flagVolume) {
     case 1:
@@ -166,3 +197,10 @@ volumeIcon.addEventListener("click", function () {
       volumeRange.style = color;
   }
 });
+
+// playlist
+
+playlist.map((sound, i) => {
+  playlistContainer.insertAdjacentHTML('beforeend', `<li class="track-wrap"><button class="play player-icon"></button> <span>${i + 1}. ${sound}</span></li>`);
+})
+

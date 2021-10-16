@@ -15,35 +15,41 @@
 <body>
 
   <header class="header">
-    <audio class="audio__item" src="./assets/sounds/Aqua Caelestis.mp3"></audio>
+    <!-- <audio class="audio__item" src="./assets/sounds/Aqua Caelestis.mp3"></audio> -->
+    <audio class="audio__item"></audio>
+
     <div class="player__container">
-      <div class="player-controls">
-        <button class="play-prev player-icon">1</button>
-        <button class="play player-icon">2</button>
-        <button class="play-next player-icon">3</button>
+      <div class="controls__container">
+        <div class="player-controls">
+          <button class="play-prev player-icon"></button>
+          <button class="play player-icon"></button>
+          <button class="play-next player-icon"></button>
+        </div>
+        <div class="audio__progress">
+          <div class="time__current">
+            00:00
+          </div>
+          <input type="range" min="1" max="100" value="0" class="progress__range" id="audio__range">
+          <div class="time__buffer"></div>
+          <div class="time__end">
+            00:00
+          </div>
+        </div>
+        <div class="volume__progress">
+          <div class="volume__icon">
+            <i class="fal fa-volume-up"></i>
+          </div>
+
+          <div class="volume__range-wrap">
+            <input type="range" min="1" max="100" value="100" class="volume__range" id="volume__range">
+          </div>
+        </div>
       </div>
-      <div class="audio__progress">
-        <div class="time__current">
-          00:00
-        </div>
-        <input type="range" min="1" max="100" value="0" class="progress__range" id="audio__range">
-        <div class="time__buffer"></div>
-        <div class="time__end">
-          00:00
-        </div>
+      <div class="play-list__container">
+        <ul class="play-list"></ul>
+        <div class="song__title"></div>
       </div>
 
-
-      <div class="volume__progress">
-        <div class="volume__icon">
-          <i class="fal fa-volume-up"></i>
-        </div>
-
-        <div class="volume__range-wrap">
-          <input type="range" min="1" max="100" value="100" class="volume__range" id="volume__range">
-        </div>
-      </div>
-      <!-- <ul class="play-list"></ul> -->
     </div>
 
     <div class="weather">
@@ -57,7 +63,6 @@
       <div class="wind"></div>
       <div class="humidity"></div>
     </div>
-
   </header>
 
   <main class="main">
