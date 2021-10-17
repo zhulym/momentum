@@ -47,9 +47,9 @@ li {
 /*=========================== PLAYER ===========================*/
 
 .player__container {
-  background-color: #0745626b;
-  width: 50%;
-  border-radius: 5px;
+  background-color: hsla(214, 52%, 30%, 0.582);
+  width: 40%;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   padding: 5px;
@@ -121,9 +121,12 @@ li {
   justify-content: space-between;
 }
 .song__title {
+  position: absolute;
   align-self: center;
-  font-size: 1.2rem;
+  font-size: 0.7rem;
   margin-right: 10px;
+  top: -5%;
+  left: 5%;
 }
 .time__current {
   position: absolute;
@@ -139,7 +142,19 @@ li {
 }
 
 .track-wrap.active {
-  color: rgb(118, 185, 124) !important;
+  color: rgb(86, 202, 206) !important;
+}
+.player__logo {
+  span {
+    font-size: 2.4rem;
+    position: relative;
+    top: -35%;
+    font-style: italic;
+    opacity: 0.8;
+  }
+  img {
+    opacity: 0.2;
+  }
 }
 .volume__icon i {
   color: #c7cbcd;

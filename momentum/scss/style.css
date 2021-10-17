@@ -55,9 +55,9 @@ li {
 
 /*=========================== PLAYER ===========================*/
 .player__container {
-  background-color: #0745626b;
-  width: 50%;
-  border-radius: 5px;
+  background-color: rgba(37, 71, 116, 0.582);
+  width: 40%;
+  border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -156,11 +156,14 @@ li {
 }
 
 .song__title {
+  position: absolute;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  font-size: 1.2rem;
+  font-size: 0.7rem;
   margin-right: 10px;
+  top: -5%;
+  left: 5%;
 }
 
 .time__current {
@@ -178,7 +181,19 @@ li {
 }
 
 .track-wrap.active {
-  color: #76b97c !important;
+  color: #56cace !important;
+}
+
+.player__logo span {
+  font-size: 2.4rem;
+  position: relative;
+  top: -35%;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.player__logo img {
+  opacity: 0.2;
 }
 
 .volume__icon i {

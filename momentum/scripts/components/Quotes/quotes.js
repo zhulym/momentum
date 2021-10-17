@@ -19,7 +19,6 @@ function renderQuote(data) {
   let currentQuote = getRandomQuote(data);
   quote.textContent = `"${currentQuote.text}"`;
   author.textContent = currentQuote.author ? currentQuote.author : 'Noname:)';
-  console.log(currentQuote)
 }
 
 function getRandomQuote(arr) {
