@@ -44,7 +44,19 @@ li {
   padding: 20px;
 }
 
-/*=========================== PLAYER ===========================*/
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 35vh;
+  min-height: 260px;
+  padding: 20px;
+}
+
+/*==================================== Player =================================*/
 
 .player__container {
   background-color: hsla(214, 52%, 30%, 0.582);
@@ -115,7 +127,7 @@ li {
   background: #fff !important;
   cursor: pointer !important;
 }
-///////////////////////////////////////
+
 .play-list__container {
   display: flex;
   justify-content: space-between;
@@ -210,7 +222,6 @@ li {
   background: #fff !important;
   cursor: pointer !important;
 }
-///////////////////////////////
 
 .play-list {
   text-align: left;
@@ -310,7 +321,7 @@ li {
   margin-left: 10px;
 }
 
-/*=========================== WEATHER ===========================*/
+/*==================================== Weather =================================*/
 .weather {
   display: flex;
   flex-direction: column;
@@ -360,19 +371,7 @@ li {
   color: #fff;
   opacity: 0.6;
 }
-
-.main {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 35vh;
-  min-height: 260px;
-  padding: 20px;
-}
-
+/*==================================== Slider =================================*/
 .slider-icon {
   position: absolute;
   top: 50%;
@@ -389,7 +388,7 @@ li {
   right: 20px;
   background-image: url("../assets/svg/slider-next.svg");
 }
-
+/*==================================== Greeting =================================*/
 .time {
   min-height: 124px;
   margin-bottom: 10px;
@@ -402,7 +401,9 @@ li {
   min-height: 28px;
   font-size: 24px;
   margin-bottom: 20px;
+  text-transform: capitalize;
 }
+
 .great__wrap {
   display: flex;
   justify-content: center;
@@ -444,7 +445,7 @@ li {
 .name:focus::placeholder {
   opacity: 0;
 }
-
+/*==================================== Footer =================================*/
 .footer {
   display: flex;
   flex-direction: column;
@@ -469,6 +470,16 @@ li {
   min-height: 20px;
 }
 
+/*=========================== Language Translator ============================*/
+.lang-active {
+  text-decoration: underline;
+  color: #12a4e7;
+}
+
+.lang__item {
+  cursor: pointer;
+}
+/*==================================== Media =================================*/
 @media (max-width: 768px) {
   .time {
     min-height: 80px;
