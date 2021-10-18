@@ -6,13 +6,15 @@
 // const humidityData = document.querySelector('.humidity');
 // const weatherError = document.querySelector('.weather-error');
 // let currentCity;
+// export const langForWeather = document.querySelectorAll('.lang__item');
+// let weatherLang;
 
 // export async function getWeather() {
 //   try {
 //     let storage = localStorage.getItem('city');
-//     currentCity = (storage || storage === '') ? storage : 'Minsk';
-//     // TODO: open URL after finish app
-//     // const url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=en&appid=3c06443cc386f2d22606bf6d85515307&units=metric`;
+//     langForWeather.forEach(el => el.classList.contains('lang-active') ? weatherLang = el.textContent : null);
+//     currentCity = (storage || storage === '') ? storage : weatherLang === 'EN' ? 'Minsk' : 'Минск';
+//     const url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=${weatherLang}&appid=3c06443cc386f2d22606bf6d85515307&units=metric`;
 //     const res = await fetch(url);
 //     let weatherData = await res.json();
 //     renderWeatherData(weatherData);
@@ -28,9 +30,9 @@
 //   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
 //   temperature.textContent = `${data.main.temp.toFixed(0)}°C`;
 //   weatherDescription.textContent = data.weather[0].description;
-//   windData.textContent = `Wind speed: ${data.wind.speed.toFixed(0)}m/s`;
-//   humidityData.textContent = `Humidity: ${data.main.humidity.toFixed(0)}%`;
-//   weatherCity.value = currentCity;
+//   windData.textContent = `${weatherLang === 'EN' ? 'Wind speed:' : 'Скорость ветра:'} ${data.wind.speed.toFixed(0)}m/s`;
+//   humidityData.textContent = `${weatherLang === 'EN' ? 'Humidity:' : 'Влажность:'} ${data.main.humidity.toFixed(0)}%`;
+//   weatherCity.value = data.name ? data.name : currentCity;
 // }
 
 // export function getCityWeather() {

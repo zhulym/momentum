@@ -1,5 +1,5 @@
 const greetingContainer = document.querySelector('.greeting');
-const langForDate = document.querySelectorAll('.lang__item');
+export const langForGreeting = document.querySelectorAll('.lang__item');
 let greetingLang;
 export const nameContainer = document.querySelector('.name');
 
@@ -7,8 +7,16 @@ export const getName = () => {
   localStorage.setItem('userName', nameContainer.value);
 }
 
+export function changePlaceholder(e) {
+  if (e.target.textContent === 'RU') {
+    nameContainer.placeholder = '[Введите имя...]';
+  } else {
+    nameContainer.placeholder = '[Enter name...]';
+  }
+}
+
 export const setName = () => {
-  nameContainer.value = `${localStorage.getItem('userName')}!!!`;
+  nameContainer.value = `${localStorage.getItem('userName')}`;
 }
 
 export const showGreeting = () => {
@@ -19,7 +27,7 @@ export const showGreeting = () => {
 export const getTimeOfDay = () => {
   const date = new Date();
   const hours = date.getHours();
-  langForDate.forEach(el => el.classList.contains('lang-active') ? greetingLang = el.textContent : null);
+  langForGreeting.forEach(el => el.classList.contains('lang-active') ? greetingLang = el.textContent : null);
   switch (true) {
     case 0 <= hours && hours < 6:
       return greetingLang === 'EN' ? 'Good night!' : 'Доброй ночи!';

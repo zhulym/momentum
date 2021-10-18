@@ -1,6 +1,6 @@
 import { showTime } from './components/DateTime/time.js';
 import { showDate } from './components/DateTime/date.js';
-import { nameContainer, getName, setName, showGreeting } from './components/Greeting/greeting.js';
+import { nameContainer, getName, setName, showGreeting, langForGreeting, changePlaceholder } from './components/Greeting/greeting.js';
 import { setBg, slideNext, slidePrev, getSlideNext, getSlidePrev } from './components/Slider/slider.js';
 // import { weatherCity, getCityWeather, getWeather } from './components/Weather/weather.js';
 import { changeQuoteBtn, getQuote } from './components/Quotes/quotes.js';
@@ -43,10 +43,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /* ============================================ Translator ======================================= */
 const langItem = document.querySelectorAll('.lang__item');
-langItem.forEach(el => el.addEventListener('click', changeLanguage));
+langItem.forEach(el => el.addEventListener('click', changeLang));
 
-function changeLanguage(e) {
+function changeLang(e) {
   handleActiveLang(e);
+  // getWeather(e);
+  showGreeting();
+  showTime();
+  changePlaceholder(e);
+  getQuote();
 }
 
 function handleActiveLang(e) {
