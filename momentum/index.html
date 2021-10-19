@@ -53,10 +53,8 @@
         </div>
       </div>
     </div>
-    <div class="language__container">
-      <span class="lang__item en-item lang-active">EN</span>
-      |
-      <span class="lang__item ru-item">RU</span>
+    <div class="settings__button">
+      <img src="./assets/img/settings2.png" alt="settings2">
     </div>
 
     <div class="weather">
@@ -88,12 +86,117 @@
   </main>
 
   <footer class="footer">
-    <button class="change-quote"></button>
-    <div>
-      <div class="quote"></div>
-      <div class="author"></div>
+    <div class="quotes__wrap">
+      <button class="change-quote"></button>
+      <div class="quotes__container">
+        <div class="quote"></div>
+        <div class="author"></div>
+      </div>
     </div>
+
   </footer>
+  <div class="settings__container">
+    <div class="close-button">
+      &#10060;
+    </div>
+    <h3 class="settings__heading">Settings</h3>
+    <div class="language__settings settings__descr">
+      <div class="settings__title">
+        Change language:
+      </div>
+      <div class="settings__switchers">
+        <span class="lang__item  lang-active">EN</span>
+        |
+        <span class="lang__item ">RU</span>
+      </div>
+    </div>
+
+    <div class="background__settings settings__descr">
+      <div class="settings__title">
+        Background source:
+      </div>
+      <div class="settings__switchers">
+        <span class="source__item lang-active">GitHub</span>
+        |
+        <span class="source__item">Unsplash</span>
+        |
+        <span class="source__item">Flickr</span><br>
+        <label class="searching-label" for="searching-query">Search by: </label><input id="searching-query" type="text"
+          name="searching" class="searching-query">
+      </div>
+    </div>
+    <h3 class="widgets__heading">Show/Hide widgets</h3>
+    <div class="time__settings settings__descr">
+      <div class="settings__title">
+        Time:
+      </div>
+      <div class="settings__switchers">
+        <span class="time__item switcher lang-active">ON</span>
+        |
+        <span class="time__item switcher">OFF</span>
+      </div>
+    </div>
+    <div class="date__settings settings__descr">
+      <div class="settings__title">
+        Date:
+      </div>
+      <div class="settings__switchers">
+        <span class="date__item switcher lang-active">ON</span>
+        |
+        <span class="date__item switcher">OFF</span>
+      </div>
+    </div>
+    <div class="greeting__settings settings__descr">
+      <div class="settings__title">
+        Greeting:
+      </div>
+      <div class="settings__switchers">
+        <span class="greeting__item switcher lang-active">ON</span>
+        |
+        <span class="greeting__item switcher">OFF</span>
+      </div>
+    </div>
+    <div class="quotes__settings settings__descr">
+      <div class="settings__title">
+        Quotes:
+      </div>
+      <div class="settings__switchers">
+        <span class="quotes__item switcher lang-active">ON</span>
+        |
+        <span class="quotes__item switcher">OFF</span>
+      </div>
+    </div>
+    <div class="weather__settings settings__descr">
+      <div class="settings__title">
+        Weather:
+      </div>
+      <div class="settings__switchers">
+        <span class="weather__item switcher lang-active">ON</span>
+        |
+        <span class="weather__item switcher">OFF</span>
+      </div>
+    </div>
+    <div class="player__settings settings__descr">
+      <div class="settings__title">
+        Player:
+      </div>
+      <div class="settings__switchers">
+        <span class="player__item switcher lang-active">ON</span>
+        |
+        <span class="player__item switcher">OFF</span>
+      </div>
+    </div>
+    <div class="todo__settings settings__descr">
+      <div class="settings__title">
+        Todo list:
+      </div>
+      <div class="settings__switchers">
+        <span class="todo__item switcher lang-active">ON</span>
+        |
+        <span class="todo__item switcher">OFF</span>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="./scripts/index.js"></script>
 </body>

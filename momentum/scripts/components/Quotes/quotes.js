@@ -6,14 +6,14 @@ const author = document.querySelector('.author');
 
 let quoteLang;
 
+//'https://type.fit/api/quotes'
 export const getQuote = async () => {
   langForQuote.forEach(el => el.classList.contains('lang-active') ? quoteLang = el.textContent : null);
-  const url = quoteLang === 'EN' ? 'https://type.fit/api/quotes' : 'scripts/constants/quotesRU.json'
+  const url = quoteLang === 'EN' ? 'scripts/constants/quotesEN.json' : 'scripts/constants/quotesRU.json';
   try {
     const response = await fetch(url);
     const data = await response.json();
     renderQuote(data);
-    console.log(data)
   } catch (error) {
     console.error(error);
   }

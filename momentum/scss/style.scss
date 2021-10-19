@@ -65,6 +65,7 @@ li {
   display: flex;
   flex-direction: column;
   padding: 5px;
+  transition: all 0.4s ease;
 }
 
 .controls__container {
@@ -331,6 +332,7 @@ li {
   width: 180px;
   min-height: 180px;
   text-align: left;
+  transition: all 0.4s ease;
 }
 
 .weather-error {
@@ -395,17 +397,20 @@ li {
   font-family: "Arial-MT";
   font-size: 100px;
   letter-spacing: -4px;
+  transition: all 0.4s ease;
 }
 
 .date {
   min-height: 28px;
   font-size: 24px;
   margin-bottom: 20px;
+  transition: all 0.4s ease;
 }
 
 .great__wrap {
   display: flex;
   justify-content: center;
+  transition: all 0.4s ease;
 }
 
 .greeting-container {
@@ -456,6 +461,10 @@ li {
   padding: 20px;
 }
 
+.quotes__wrap {
+  transition: all 0.4s ease;
+}
+
 .change-quote {
   margin-bottom: 30px;
   background-image: url("../assets/svg/reload.svg");
@@ -478,6 +487,99 @@ li {
 .lang__item {
   cursor: pointer;
 }
+
+/*=========================== Settings ============================*/
+
+.settings__container {
+  width: 25%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  right: 0;
+  top: 0;
+  // transform: translateX(100%);
+  padding: 1rem 1.5rem 1rem 1rem;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.settings__title {
+  text-align: left;
+}
+
+.settings__switchers {
+  text-align: right;
+}
+
+.settings__descr {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.close-button {
+  position: absolute;
+  top: 2%;
+  left: 5%;
+  transition: all 0.3s ease;
+  user-select: none;
+  &:hover {
+    cursor: pointer;
+    text-shadow: none;
+  }
+  &:active {
+    transform: scale(1.3);
+  }
+}
+
+.settings__button {
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    text-shadow: none;
+  }
+  &:active {
+    transform: scale(1.1);
+  }
+}
+.settings__container.active-settings {
+  transform: translateX(0);
+}
+
+.searching-query {
+  width: 50%;
+  outline: none;
+  border: none;
+  padding: 3px;
+  border-radius: 3px;
+  &:focus {
+    background-color: rgb(236, 236, 236);
+  }
+}
+
+.settings__switchers {
+  font-size: 0.8rem;
+  span {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+}
+
+.switcher,
+.source__item,
+.lang__item {
+  cursor: pointer;
+  &:hover {
+    color: #1492cc;
+  }
+}
+
+.hide-widgets {
+  opacity: 0;
+}
+
 /*==================================== Media =================================*/
 @media (max-width: 768px) {
   .time {
