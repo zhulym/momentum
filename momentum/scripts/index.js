@@ -6,7 +6,18 @@ import { setBg, slideNext, slidePrev, getSlideNext, getSlidePrev, sourceItems } 
 import { changeQuoteBtn, getQuote } from './components/Quotes/quotes.js';
 import { listBtn, audioItem, playBtn, prevBtn, nextBtn, audioRange, volumeRange, volumeIcon, handleListBtn, showProgress, handleNext, playStop, handlePrev, updateAudioProgress, changeVolOnInput, changeVolOnClick } from './components/Audio/audio.js';
 import { changeLang } from './components/Translator/translator.js';
-// let isEnLang = true;
+
+let appSettings = {
+  lang: '',
+  source: '',
+  time: '',
+  date: '',
+  greeting: '',
+  quotes: '',
+  weather: '',
+  player: '',
+  todo: '',
+}
 
 // TODO: open URL in WEATHER after finish app!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /* ======================================= GREETING - DATE - TIME ================================*/
@@ -60,6 +71,8 @@ const playerBlock = document.querySelector('.player__container');
 // const todoBlock = document.querySelector('.todo__container');
 const switchers = document.querySelectorAll('.switcher');
 
+window.addEventListener('beforeunload', saveAppSettings);
+window.addEventListener('load', getUserSettings);
 settingsButton.addEventListener('click', openSettings);
 closeButton.addEventListener('click', openSettings);
 switchers.forEach(el => el.addEventListener('click', handleActiveSwitcher));
@@ -71,6 +84,8 @@ function openSettings() {
 function handleActiveSwitcher(e) {
   let currentSwitchers;
   let el = e.target;
+  let settingItem = e.target.classList[0].split('__')[0]; // 'time', 'date' etc...
+  appSettings[settingItem] = el.textContent === 'OFF' || el.textContent === 'ВЫКЛ' ? 'OFF' : '';
   switch (true) {
     case e.target.classList.contains('time__item'):
       currentSwitchers = document.querySelectorAll('.time__item');
@@ -114,7 +129,70 @@ function handleActiveSwitcher(e) {
       if (el.textContent === 'ON' || el.textContent === 'ВКЛ') playerBlock.classList.remove('hide-widgets')
       else playerBlock.classList.add('hide-widgets')
       break;
+    // case e.target.classList.contains('todo__item'):
+    //   currentSwitchers = document.querySelectorAll('.todo__item');
+    //   currentSwitchers.forEach(item => item.classList.remove('lang-active'));
+    //   el.classList.add('lang-active');
+    //   if (el.textContent === 'ON' || el.textContent === 'ВКЛ') todoBlock.classList.remove('hide-widgets')
+    //   else todoBlock.classList.add('hide-widgets')
+    //   break;
     default:
       break;
   }
 }
+
+function saveAppSettings() {
+  langItem.forEach(el => el.classList.contains('lang-active') ? appSettings.lang = el.textContent : '');
+  let appStg = JSON.stringify(appSettings);
+  localStorage.setItem('momentum', appStg);
+}
+
+function getUserSettings() {
+  appSettings = JSON.parse(localStorage.getItem('momentum'));
+  for (const key in appSettings) {
+    langItem.forEach(el => {
+      if (appSettings[key] === 'RU' && el.textContent === 'RU') {
+        el.classList.add('lang-active');
+        el.previousElementSibling.classList.remove('lang-active');
+      }
+    });
+
+    switchers.forEach(el => {
+      let currEl = el.classList[0].split('__')[0]; // 'time' ...
+      if (currEl === key && appSettings[key] === 'OFF' && el.textContent === 'OFF') {
+        el.classList.add('lang-active');
+        el.previousElementSibling.classList.remove('lang-active');
+
+        switch (true) {
+          case key === 'time':
+            timeBlock.classList.add('hide-widgets')
+            break;
+          case key === 'date':
+            dateBlock.classList.add('hide-widgets')
+            break;
+          case key === 'greeting':
+            greetingBlock.classList.add('hide-widgets')
+            break;
+          case key === 'quotes':
+            quotesBlock.classList.add('hide-widgets')
+            break;
+          case key === 'weather':
+            weatherBlock.classList.add('hide-widgets')
+            break;
+          case key === 'player':
+            playerBlock.classList.add('hide-widgets')
+            break;
+          // case key === 'todo':
+          //   todoBlock.classList.add('hide-widgets')
+          //   break;
+
+          default:
+            break;
+        }
+
+      }
+    })
+  }
+}
+
+// localStorage.removeItem('momentum');

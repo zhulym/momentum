@@ -379,16 +379,18 @@ li {
   top: 50%;
   margin-top: -16px;
   cursor: pointer;
+  opacity: 0.7;
+  display: inline-block;
 }
 
 .slide-prev {
   left: 20px;
-  background-image: url("../assets/svg/slider-prev.svg");
+  background-image: url("../assets/svg/slider-prev.png");
 }
 
 .slide-next {
   right: 20px;
-  background-image: url("../assets/svg/slider-next.svg");
+  background-image: url("../assets/svg/slider-next.png");
 }
 /*==================================== Greeting =================================*/
 .time {
@@ -467,7 +469,14 @@ li {
 
 .change-quote {
   margin-bottom: 30px;
-  background-image: url("../assets/svg/reload.svg");
+  background-image: url("../assets/svg/reload.png");
+  opacity: 0.9;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.9);
+  }
 }
 
 .quote {
@@ -548,6 +557,10 @@ li {
   transform: translateX(0);
 }
 
+.searching__container {
+  opacity: 0;
+}
+
 .searching-query {
   width: 50%;
   outline: none;
@@ -578,6 +591,9 @@ li {
 
 .hide-widgets {
   opacity: 0;
+}
+.searching__container.show-searching {
+  opacity: 1;
 }
 
 /*==================================== Media =================================*/

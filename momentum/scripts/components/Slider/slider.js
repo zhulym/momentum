@@ -4,6 +4,7 @@ export const slidePrev = document.querySelector('.slide-prev');
 export const slideNext = document.querySelector('.slide-next');
 export const sourceItems = document.querySelectorAll('.source__item');
 const searchingQuery = document.querySelector('.searching-query');
+const searchingContainer = document.querySelector('.searching__container');
 const body = document.body;
 const minNum = 1;
 const maxNum = 20;
@@ -21,8 +22,15 @@ searchingQuery.addEventListener('change', setNewTag);
 function setActiveSource(e) {
   sourceItems.forEach(el => el.classList.remove('lang-active'));
   e.target.classList.add('lang-active');
+  debugger
   if (e.target.textContent === 'Unsplash') getLinkUnsplash();
   if (e.target.textContent === 'Flickr' && !flickrData) getLinkFlickr();
+  if (e.target.textContent === 'Github') {
+    newSearchingTag = '';
+    searchingContainer.classList.remove('show-searching');
+  } else {
+    searchingContainer.classList.add('show-searching');
+  }
 }
 
 export function getSlideNext() {
@@ -56,6 +64,10 @@ export function setBg() {
   let numOfImg = currNum < 10 ? `0${currNum}` : currNum;
   let timeString = getTimeOfDay(); // 'Good afternoon!'
   let timeOfDay = timeString.split(' ')[1]; // 'afternoon!'
+  if (timeOfDay === 'день!') timeOfDay = 'afternoon!';
+  if (timeOfDay === 'ночи!') timeOfDay = 'night!';
+  if (timeOfDay === 'вечер!') timeOfDay = 'evening!';
+  if (timeOfDay === 'утро!') timeOfDay = 'morning!';
   if (currentSource === 'Github') src = `https://raw.githubusercontent.com/zhulym/stage1-tasks/assets/images/${timeOfDay.slice(0, timeOfDay.length - 1)}/${numOfImg}.jpg`;
   if (currentSource === 'Unsplash') src = urlUnsplash;
   if (currentSource === 'Flickr') src = !flickrData[currNum] ? flickrData[0] : flickrData[currNum];
@@ -86,7 +98,6 @@ async function getLinkFlickr() {
   try {
     let timeString = getTimeOfDay();
     let timeOfDay = timeString.split(' ')[1];
-    debugger
     const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=dd616ef0efc811962fc3e79b5b3a206c&tags=${newSearchingTag ? newSearchingTag : timeOfDay.slice(0, timeOfDay.length - 1)}&extras=url_l&format=json&nojsoncallback=1&per_page=21&media=photos`;
     const res = await fetch(url);
     const data = await res.json();
