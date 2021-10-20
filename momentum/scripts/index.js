@@ -1,7 +1,7 @@
 import { showTime } from './components/DateTime/time.js';
 import { showDate } from './components/DateTime/date.js';
 import { nameContainer, getName, setName, showGreeting, langForGreeting, changePlaceholder } from './components/Greeting/greeting.js';
-import { setBg, slideNext, slidePrev, getSlideNext, getSlidePrev } from './components/Slider/slider.js';
+import { setBg, slideNext, slidePrev, getSlideNext, getSlidePrev, sourceItems } from './components/Slider/slider.js';
 // import { weatherCity, getCityWeather, getWeather } from './components/Weather/weather.js';
 import { changeQuoteBtn, getQuote } from './components/Quotes/quotes.js';
 import { listBtn, audioItem, playBtn, prevBtn, nextBtn, audioRange, volumeRange, volumeIcon, handleListBtn, showProgress, handleNext, playStop, handlePrev, updateAudioProgress, changeVolOnInput, changeVolOnClick } from './components/Audio/audio.js';
@@ -22,6 +22,7 @@ window.addEventListener('load', setName);
 window.addEventListener('load', setBg);
 slideNext.addEventListener('click', getSlideNext)
 slidePrev.addEventListener('click', getSlidePrev)
+sourceItems.forEach(el => el.addEventListener('click', setBg));
 /* =========================================== WEATHER =========================================== */
 // weatherCity.addEventListener('change', getCityWeather)
 // window.addEventListener('load', getWeather);
