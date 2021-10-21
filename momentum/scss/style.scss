@@ -486,10 +486,10 @@ a {
   min-height: 30vh;
   background-color: hsla(214, 52%, 30%, 0.582);
   border-radius: 7px;
-  // transform: translateY(-200%); ////////
+  transform: translateY(-200%); ////////
   transition: all 0.3s ease;
   padding: 7px;
-  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .close-todo {

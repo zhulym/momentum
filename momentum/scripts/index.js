@@ -67,7 +67,7 @@ const greetingBlock = document.querySelector('.great__wrap');
 const quotesBlock = document.querySelector('.quotes__wrap');
 const weatherBlock = document.querySelector('.weather');
 const playerBlock = document.querySelector('.player__container');
-// const todoBlock = document.querySelector('.todo__container');
+const todoBlock = document.querySelector('.todo__container');
 const switchers = document.querySelectorAll('.switcher');
 
 window.addEventListener('beforeunload', saveAppSettings);
@@ -128,13 +128,13 @@ function handleActiveSwitcher(e) {
       if (el.textContent === 'ON' || el.textContent === 'ВКЛ') playerBlock.classList.remove('hide-widgets')
       else playerBlock.classList.add('hide-widgets')
       break;
-    // case e.target.classList.contains('todo__item'):
-    //   currentSwitchers = document.querySelectorAll('.todo__item');
-    //   currentSwitchers.forEach(item => item.classList.remove('lang-active'));
-    //   el.classList.add('lang-active');
-    //   if (el.textContent === 'ON' || el.textContent === 'ВКЛ') todoBlock.classList.remove('hide-widgets')
-    //   else todoBlock.classList.add('hide-widgets')
-    //   break;
+    case e.target.classList.contains('todo__item'):
+      currentSwitchers = document.querySelectorAll('.todo__item');
+      currentSwitchers.forEach(item => item.classList.remove('lang-active'));
+      el.classList.add('lang-active');
+      if (el.textContent === 'ON' || el.textContent === 'ВКЛ') todoBlock.classList.remove('hide-widgets')
+      else todoBlock.classList.add('hide-widgets')
+      break;
     default:
       break;
   }
@@ -159,7 +159,7 @@ function getUserSettings() {
     searchingContainer.classList.add('show-searching');
   }
 
-  getLinkUnsplash();
+  // getLinkUnsplash();////////////////////////////////////open later!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   getLinkFlickr();
 
   for (const key in appSettings) {
@@ -188,9 +188,9 @@ function getUserSettings() {
           case key === 'player':
             playerBlock.classList.add('hide-widgets')
             break;
-          // case key === 'todo':
-          //   todoBlock.classList.add('hide-widgets')
-          //   break;
+          case key === 'todo':
+            todoBlock.classList.add('hide-widgets')
+            break;
           default:
             break;
         }
@@ -217,7 +217,7 @@ window.addEventListener('load', getTodoData);
 addTodoBtn.addEventListener('click', addTodo);
 addTodoBtn.addEventListener('click', renderTodoList);
 
-Array.from(todoDelete).forEach(el => el.addEventListener('click', deleteTodo));
+todoContent.addEventListener('click', deleteTodo);
 
 [todoBtn, closeTodo].forEach(el => el.addEventListener('click', openTodo));
 
@@ -229,20 +229,24 @@ function openTodo() {
 function addTodo() {
   if (!inputTodo.value) return;
   todoData.push(inputTodo.value);
-  let data = JSON.stringify(todoData);
-  localStorage.setItem('todo', data);
-  console.log(todoDelete)
+  saveTodoList();
+  inputTodo.value = '';
 }
 
-function deleteTodo() {
-  console.log('del')
+function deleteTodo(e) {
+  let currentId = Number(e.target.parentNode.firstElementChild.textContent);
+  if (e.target.className === 'todo__delete') {
+    todoData = todoData.filter((el, i) => i + 1 !== currentId);
+    renderTodoList();
+    saveTodoList();
+  }
 }
 
 function renderTodoList() {
   todoListContainer.innerHTML = null;
   todoData.map((el, i) => {
     todoListContainer.insertAdjacentHTML('beforeend', `<p class="list-item">
-    ${i + 1}. <input class="todo__check" type="checkbox"/> ${el} <button class="todo__delete" type="button">Delete</button></p>`);
+    <span>${i + 1}</span>. <input class="todo__check" type="checkbox"/> ${el} <button class="todo__delete" type="button">${appSettings.lang === 'EN' ? 'Delete' : 'Удалить'}</button></p>`);
   })
 }
 
@@ -251,5 +255,84 @@ function getTodoData() {
   renderTodoList();
 }
 
+function saveTodoList() {
+  let data = JSON.stringify(todoData);
+  localStorage.setItem('todo', data);
+}
 // localStorage.removeItem('todo');
-console.log(Array.from(todoDelete))
+
+// Самооценка проекта:
+// console.log(`
+// Самооценка: \n
+// 1. Часы и календарь (+15)
+//   - время в 24-часовом формате +5
+//   - время обновляется, цифры не дёргаются) +5
+//   - выводится день недели, число, месяц +5
+//   - Язык и формат вывода даты определяется языком приложения. +
+//   - при изменении дня недели, даты, месяца эти данные меняются +
+// 2. Приветствие +10
+//   - приветствие меняется в зависимости от времени суток (утро, день, вечер, ночь) +5
+//   - с 6:00 до 11:59 - Good morning / Доброе утро
+//   - с 12:00 до 17:59 - Good afternoon / Добрый день
+//   - с 18:00 до 23:59 - Good evening / Добрый вечер
+//   - с 00:00 до 5:59 - Good night / Доброй/Спокойной ночи
+//   - при изменении времени суток, если в это время приложение открыто, меняется текст приветствия
+//   - можно ввести имя. При перезагрузке  имя сохраняется, данные в local storage +5
+// 3. Смена фонового изображения (+20)
+//   - ссылка на изображение формируется с учётом времени суток и случайного номера изображения (от 01 до 20) +5
+//   - изображения можно перелистывать кликами по стрелкам.
+//   - перелистываются последовательно - за 18м - 19е(клик по правой стрелке) и наоборот(клик по левой стрелке) +5
+//   - изображения перелистываются по кругу +5
+//   - слайды меняются плавно, пользователь не видит частично загрузившееся изображение +5
+// 4. Виджет погоды (+15)
+//   - город по умолчанию - Минск, пока пользователь не ввёл другой город
+//   - при перезагрузке страницы приложения указанный пользователем город сохраняется, данные о нём хранятся в local storage +5
+//   - для указанного пользователем населённого пункта выводятся данные о погоде, если их возвращает API
+//   - данные о погоде включают в себя: иконку погоды, описание погоды, температуру в °C, скорость ветра в м/с, относительную влажность воздуха в %. Числовые параметры погоды округляются до целых чисел +5
+//   - выводится уведомление об ошибке при вводе некорректных значений, для которых API не возвращает погоду (пустая строка или бессмысленный набор символов) +5
+// 5. Виджет цитата дня (+10)
+//   - при загрузке страницы приложения отображается рандомная цитата и её автор +5
+//   - В качестве источника цитаты можно использовать как API, так и созданный вами или найденный в интернете JSON-файл с цитатами и их авторами. API с цитатами не отличаются надёжностью и долговечностью, используемый в качестве источника цитат собственный JSON-файл гарантирует работоспособность вашего приложения. Запросы к JSON также осуществляются асинхронно, таким образом необходимые знания о работе с асинхронными запросами вы получите
+//   - при перезагрузке страницы цитата обновляется. При клике по кнопке цитата обновляется (заменяется на другую) +5
+// 6. Аудиоплеер (+15)
+//   - при клике по кнопке Play/Pause проигрывается первый трек из блока play-list, иконка кнопки меняется на Pause +3
+//   - при клике по кнопке Play/Pause во время проигрывания трека, останавливается проигрывание трека, иконка кнопки меняется на Play +3
+//   - треки можно пролистывать кнопками Play-next и Play-prev
+//   - треки пролистываются по кругу  +3
+//   - трек, который в данный момент проигрывается, в блоке Play-list выделяется стилем +3
+//   - после окончания первого трека запускается проигрывание следующего. Треки проигрываются по кругу +3
+//   - плейлист генерируется средствами JavaScript +
+// 7. Продвинутый аудиоплеер (реализуется без использования библиотек) (+20)
+//   - добавлен прогресс-бар в котором отображается прогресс проигрывания +3
+//   - при перемещении ползунка прогресс-бара меняется текущее время воспроизведения трека +3
+//   - над прогресс-баром отображается название трека +3
+//   - отображается текущее и общее время воспроизведения трека +3
+//   - есть кнопка звука при клике по которой можно включить/отключить звук +2
+//   - добавлен регулятор громкости, при перемещении ползунка меняется громкость проигрывания звука +3
+//   - можно запустить и остановить проигрывания трека кликом по кнопке Play/Pause рядом с ним в плейлисте +3
+// 8.  Перевод приложения на два языка (en/ru или en/be) (+15)
+//   - переводится язык и меняется формат отображения даты +3
+//   - переводится приветствие и placeholder +3
+//   - переводится прогноз погоды в т.ч описание погоды и город по умолчанию +3
+//   - переводится цитата дня  +3
+//   - переводятся настройки приложения. Язык настроек тоже меняется +3
+// 9. Получение фонового изображения от API (+10) 
+//    фоновые изображения можно перелистывать кликами по стрелкам, обеспечивается плавная смена фоновых изображений, ссылка на фоновое изображение формируется с учётом времени суток, если пользователь не указал другие теги для их получения.
+//   - в качестве источника изображений может использоваться Unsplash API +5
+//   - в качестве источника изображений может использоваться Flickr API +5
+// 10. Настройки приложения (+20)
+//   - в настройках приложения можно указать язык приложения (en/ru или en/be) +3
+//   - в настройках приложения можно указать источник получения фонового изображения: GitHub, Unsplash API, Flickr API +3
+//   - если источником получения фото указан API, в настройках приложения можно указать тег/теги, для которых API будет присылает фото +3
+//   - в настройках приложения можно скрыть/отобразить блоки, которые находятся на странице +3
+//   - скрытие и отображение блоков происходит плавно, не влияя на другие элементы +3
+//   - настройки приложения сохраняются при перезагрузке страницы +5
+// 11. Дополнительный функционал (+10)
+//     ToDo List - список дел:
+//   - список создан, по кнопке плавно открывается и закрывается +3
+//   - можно добавлять дела в список +3
+//   - можно удалять дела из списка +3
+//   - список дел сохраняется и отрисовывается после перезагрузки страницы +3
+
+// Итого: 160.
+// `);

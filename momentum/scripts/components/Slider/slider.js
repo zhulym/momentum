@@ -112,13 +112,17 @@ export async function getLinkFlickr() {
 
 function setNewTag() {
   newSearchingTag = searchingQuery.value;
-  if (currentSource === 'Flickr') getLinkFlickr();
-  getSlideNext();
+  if (currentSource === 'Flickr') {
+    getLinkFlickr();
+    setTimeout(() => {
+      getSlideNext();
+    }, 4000);
+  }
 }
 
 function setCurrentSource() {
   let appSettings = JSON.parse(localStorage.getItem('momentum'));
-  if (appSettings.source !== 'Github') {
-    currentSource = appSettings.source;
-  }
+  // if (appSettings.source !== 'Github') {
+  currentSource = appSettings.source;
+  // }
 }

@@ -9,6 +9,9 @@ const searchingLabel = document.querySelector('.searching-label');
 const settingsHeading = document.querySelector('.settings__heading');
 const widgetsHeading = document.querySelector('.widgets__heading');
 const langItem = document.querySelectorAll('.lang__item');
+const todoBtn = document.querySelector('.todo__btn');
+const todoLabel = document.querySelector('.todo__label');
+
 let appSettings = JSON.parse(localStorage.getItem('momentum'));
 let isEnLang = appSettings.lang === 'EN' ? true : false;
 
@@ -19,6 +22,8 @@ export function changeLang(e) {
   searchingLabel.textContent = isEnLang ? 'Поиск по: ' : 'Search by: ';
   settingsHeading.textContent = isEnLang ? 'Настройки' : 'Settings';
   widgetsHeading.textContent = isEnLang ? 'Показать/скрыть виджеты' : 'Show/Hide widgets';
+  todoBtn.textContent = isEnLang ? 'Список дел' : 'Todo';
+  todoLabel.textContent = isEnLang ? 'Добавить' : 'Add New Todo';
   handleActiveLang(e);
   getWeather(e);
   showGreeting();
@@ -130,4 +135,6 @@ function setLangSetting() {
   searchingLabel.textContent = !isEnLang ? 'Поиск по: ' : 'Search by: ';
   settingsHeading.textContent = !isEnLang ? 'Настройки' : 'Settings';
   widgetsHeading.textContent = !isEnLang ? 'Показать/скрыть виджеты' : 'Show/Hide widgets';
+  todoBtn.textContent = !isEnLang ? 'Список дел' : 'Todo';
+  todoLabel.textContent = !isEnLang ? 'Добавить' : 'Add New Todo';
 }

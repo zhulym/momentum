@@ -8,11 +8,14 @@ const weatherError = document.querySelector('.weather-error');
 let currentCity;
 export const langForWeather = document.querySelectorAll('.lang__item');
 let weatherLang;
+let appSettings = JSON.parse(localStorage.getItem('momentum'));
 
 export async function getWeather() {
   try {
     let storage = localStorage.getItem('city');
-    langForWeather.forEach(el => el.classList.contains('lang-active') && el.textContent === 'РУС' ? weatherLang = 'ru' : 'en');
+    weatherLang = appSettings.lang === 'EN' ? 'EN' : 'RU'
+
+    langForWeather.forEach(el => el.classList.contains('lang-active') && el.textContent === 'РУС' ? weatherLang = 'RU' : 'EN');
     currentCity = (storage || storage === '') ? storage : weatherLang === 'EN' ? 'Minsk' : 'Минск';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=${weatherLang}&appid=3c06443cc386f2d22606bf6d85515307&units=metric`;
     const res = await fetch(url);
