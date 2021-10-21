@@ -1,4 +1,4 @@
-// import { getWeather } from '../Weather/weather.js';
+import { getWeather } from '../Weather/weather.js';
 import { showGreeting, changePlaceholder } from '../Greeting/greeting.js';
 import { showTime } from '../DateTime/time.js';
 import { getQuote } from '../Quotes/quotes.js';
@@ -9,7 +9,10 @@ const searchingLabel = document.querySelector('.searching-label');
 const settingsHeading = document.querySelector('.settings__heading');
 const widgetsHeading = document.querySelector('.widgets__heading');
 const langItem = document.querySelectorAll('.lang__item');
-let isEnLang = true;
+let appSettings = JSON.parse(localStorage.getItem('momentum'));
+let isEnLang = appSettings.lang === 'EN' ? true : false;
+
+window.addEventListener('load', setLangSetting);
 
 export function changeLang(e) {
   if (e.target.classList.contains('lang-active')) return;
@@ -17,7 +20,7 @@ export function changeLang(e) {
   settingsHeading.textContent = isEnLang ? 'Настройки' : 'Settings';
   widgetsHeading.textContent = isEnLang ? 'Показать/скрыть виджеты' : 'Show/Hide widgets';
   handleActiveLang(e);
-  // getWeather(e);
+  getWeather(e);
   showGreeting();
   showTime();
   changePlaceholder(e);
@@ -35,9 +38,9 @@ function handleActiveLang(e) {
 
 function translateSwitchers() {
   if (!isEnLang) {
-    switchers.forEach(sw => sw.textContent === 'ON' ? sw.textContent = 'ВКЛ' : sw.textContent = 'ВЫКЛ');
+    switchers.forEach(sw => sw.textContent === 'ON' ? sw.textContent = 'ВКЛ' : sw.textContent === 'OFF' ? sw.textContent = 'ВЫКЛ' : null);
   } else {
-    switchers.forEach(sw => sw.textContent === 'ВКЛ' ? sw.textContent = 'ON' : sw.textContent = 'OFF');
+    switchers.forEach(sw => sw.textContent === 'ВКЛ' ? sw.textContent = 'ON' : sw.textContent === 'ВЫКЛ' ? sw.textContent = 'OFF' : null);
   }
 }
 
@@ -110,4 +113,21 @@ function translateTitles() {
       }
     }
   })
+}
+
+function setLangSetting() {
+  if (appSettings.lang === 'РУС') isEnLang = false;   // change lang flag
+  else isEnLang = true;
+
+  langItem.forEach(el => el.classList.remove('lang-active'));    // clean and change active lang switcher
+  langItem.forEach(el => {
+    if (el.textContent === 'РУС' && appSettings.lang === 'РУС') el.classList.add('lang-active');
+    if (el.textContent === 'EN' && appSettings.lang === 'EN') el.classList.add('lang-active');
+  });
+
+  translateSwitchers();
+  translateTitles();
+  searchingLabel.textContent = !isEnLang ? 'Поиск по: ' : 'Search by: ';
+  settingsHeading.textContent = !isEnLang ? 'Настройки' : 'Settings';
+  widgetsHeading.textContent = !isEnLang ? 'Показать/скрыть виджеты' : 'Show/Hide widgets';
 }

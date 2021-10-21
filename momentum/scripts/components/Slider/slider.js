@@ -4,7 +4,7 @@ export const slidePrev = document.querySelector('.slide-prev');
 export const slideNext = document.querySelector('.slide-next');
 export const sourceItems = document.querySelectorAll('.source__item');
 const searchingQuery = document.querySelector('.searching-query');
-const searchingContainer = document.querySelector('.searching__container');
+export const searchingContainer = document.querySelector('.searching__container');
 const body = document.body;
 const minNum = 1;
 const maxNum = 20;
@@ -16,13 +16,15 @@ let urlUnsplash;
 let flickrData;
 let newSearchingTag;
 
+window.addEventListener('load', setCurrentSource);
+
 sourceItems.forEach(el => el.addEventListener('click', setActiveSource));
 searchingQuery.addEventListener('change', setNewTag);
 
 function setActiveSource(e) {
   sourceItems.forEach(el => el.classList.remove('lang-active'));
   e.target.classList.add('lang-active');
-  debugger
+
   if (e.target.textContent === 'Unsplash') getLinkUnsplash();
   if (e.target.textContent === 'Flickr' && !flickrData) getLinkFlickr();
   if (e.target.textContent === 'Github') {
@@ -34,7 +36,7 @@ function setActiveSource(e) {
 }
 
 export function getSlideNext() {
-  if (currentSource === 'Flickr' || currentSource === 'Unsplash') {
+  if (currentSource === 'Unsplash') {
     currNum = getRandomNum(minNum, maxNum);
     if (currentSource === 'Unsplash') getLinkUnsplash();
     setBg();
@@ -45,7 +47,7 @@ export function getSlideNext() {
   setBg();
 }
 export function getSlidePrev() {
-  if (currentSource === 'Flickr' || currentSource === 'Unsplash') {
+  if (currentSource === 'Unsplash') {
     currNum = getRandomNum(minNum, maxNum);
     if (currentSource === 'Unsplash') getLinkUnsplash();
     setBg();
@@ -80,7 +82,7 @@ export function setBg() {
 
 }
 
-async function getLinkUnsplash() {
+export async function getLinkUnsplash() {
   try {
     let timeString = getTimeOfDay();
     let timeOfDay = timeString.split(' ')[1];
@@ -94,7 +96,7 @@ async function getLinkUnsplash() {
   }
 }
 
-async function getLinkFlickr() {
+export async function getLinkFlickr() {
   try {
     let timeString = getTimeOfDay();
     let timeOfDay = timeString.split(' ')[1];
@@ -112,5 +114,11 @@ function setNewTag() {
   newSearchingTag = searchingQuery.value;
   if (currentSource === 'Flickr') getLinkFlickr();
   getSlideNext();
-  console.log(newSearchingTag)
+}
+
+function setCurrentSource() {
+  let appSettings = JSON.parse(localStorage.getItem('momentum'));
+  if (appSettings.source !== 'Github') {
+    currentSource = appSettings.source;
+  }
 }

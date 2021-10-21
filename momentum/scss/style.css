@@ -53,6 +53,12 @@ li {
   padding: 20px;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+  text-shadow: 0 0 5px white;
+}
+
 .main {
   position: relative;
   display: -webkit-box;
@@ -601,6 +607,138 @@ li {
   opacity: 0;
 }
 
+/*==================================== Todo =================================*/
+.todo__container {
+  position: relative;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.todo__btn {
+  background-color: rgba(37, 71, 116, 0.582);
+  border-radius: 7px;
+  padding: 5px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.todo__btn:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.todo__btn:active {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.todo__content {
+  text-align: left;
+  position: relative;
+  z-index: 5;
+  width: 35vw;
+  min-height: 30vh;
+  background-color: rgba(37, 71, 116, 0.582);
+  border-radius: 7px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 7px;
+  overflow-y: scroll;
+}
+
+.close-todo {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.close-todo:hover {
+  cursor: pointer;
+  text-shadow: none;
+}
+
+.close-todo:active {
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+}
+
+.input__todo {
+  padding: 5px;
+  border-radius: 5px;
+  outline: none;
+  margin-left: 0;
+  border: 1px solid #283b57 !important;
+  width: 50%;
+}
+
+.input__todo:focus {
+  background-color: #f7f7f7;
+}
+
+.todo__label {
+  padding: 5px;
+  border: 1px solid rgba(37, 116, 70, 0.582);
+  border-radius: 5px;
+  background-color: rgba(37, 116, 70, 0.582);
+  color: white;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.todo__label:hover {
+  cursor: pointer;
+  text-shadow: none;
+}
+
+.list-item {
+  margin: 7px;
+  position: relative;
+}
+
+.todo__check:hover {
+  cursor: pointer;
+}
+
+.todo__delete {
+  background-color: rgba(220, 20, 20, 0.774);
+  color: white;
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+  text-align: right;
+  position: absolute;
+  right: 0;
+}
+
+.todo__delete:hover {
+  cursor: pointer;
+  background-color: rgba(220, 20, 20, 0.904);
+}
+
+.todo__delete:active {
+  top: 1px;
+}
+
+.todo__content.active__todo {
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+}
+
+.todo__btn.hide__todo-btn {
+  display: none !important;
+}
+
 /*==================================== Footer =================================*/
 .footer {
   display: -webkit-box;
@@ -651,6 +789,34 @@ li {
   min-height: 20px;
 }
 
+.footer__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.github__link {
+  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.rs__link {
+  position: relative;
+  left: -3rem;
+}
+
 /*=========================== Language Translator ============================*/
 .lang-active {
   text-decoration: underline;
@@ -685,6 +851,7 @@ li {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  z-index: 10;
 }
 
 .settings__title {
@@ -775,6 +942,8 @@ li {
 .switcher,
 .source__item,
 .lang__item {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 

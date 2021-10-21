@@ -1,8 +1,8 @@
 import { showTime } from './components/DateTime/time.js';
 import { showDate } from './components/DateTime/date.js';
 import { nameContainer, getName, setName, showGreeting, langForGreeting, changePlaceholder } from './components/Greeting/greeting.js';
-import { setBg, slideNext, slidePrev, getSlideNext, getSlidePrev, sourceItems } from './components/Slider/slider.js';
-// import { weatherCity, getCityWeather, getWeather } from './components/Weather/weather.js';
+import { setBg, slideNext, slidePrev, getSlideNext, getSlidePrev, sourceItems, searchingContainer, getLinkFlickr, getLinkUnsplash } from './components/Slider/slider.js';
+import { weatherCity, getCityWeather, getWeather } from './components/Weather/weather.js';
 import { changeQuoteBtn, getQuote } from './components/Quotes/quotes.js';
 import { listBtn, audioItem, playBtn, prevBtn, nextBtn, audioRange, volumeRange, volumeIcon, handleListBtn, showProgress, handleNext, playStop, handlePrev, updateAudioProgress, changeVolOnInput, changeVolOnClick } from './components/Audio/audio.js';
 import { changeLang } from './components/Translator/translator.js';
@@ -19,7 +19,6 @@ let appSettings = {
   todo: '',
 }
 
-// TODO: open URL in WEATHER after finish app!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /* ======================================= GREETING - DATE - TIME ================================*/
 setTimeout(function updateTime() {
   showTime();
@@ -35,8 +34,8 @@ slideNext.addEventListener('click', getSlideNext)
 slidePrev.addEventListener('click', getSlidePrev)
 sourceItems.forEach(el => el.addEventListener('click', setBg));
 /* =========================================== WEATHER =========================================== */
-// weatherCity.addEventListener('change', getCityWeather)
-// window.addEventListener('load', getWeather);
+weatherCity.addEventListener('change', getCityWeather)
+window.addEventListener('load', getWeather);
 /* ============================================ QUOTE ============================================ */
 changeQuoteBtn.addEventListener('click', getQuote);
 window.addEventListener('load', getQuote);
@@ -143,23 +142,30 @@ function handleActiveSwitcher(e) {
 
 function saveAppSettings() {
   langItem.forEach(el => el.classList.contains('lang-active') ? appSettings.lang = el.textContent : '');
+  sourceItems.forEach(el => el.classList.contains('lang-active') ? appSettings.source = el.textContent : '');
   let appStg = JSON.stringify(appSettings);
   localStorage.setItem('momentum', appStg);
 }
 
 function getUserSettings() {
   appSettings = JSON.parse(localStorage.getItem('momentum'));
-  for (const key in appSettings) {
-    langItem.forEach(el => {
-      if (appSettings[key] === 'RU' && el.textContent === 'RU') {
-        el.classList.add('lang-active');
-        el.previousElementSibling.classList.remove('lang-active');
-      }
-    });
+  sourceItems.forEach(el => {
+    el.classList.remove('lang-active');
+    appSettings.source === el.textContent ? el.classList.add('lang-active') : null;
+  });
+  if (appSettings.source === 'Github') {
+    searchingContainer.classList.remove('show-searching');
+  } else {
+    searchingContainer.classList.add('show-searching');
+  }
 
+  getLinkUnsplash();
+  getLinkFlickr();
+
+  for (const key in appSettings) {
     switchers.forEach(el => {
       let currEl = el.classList[0].split('__')[0]; // 'time' ...
-      if (currEl === key && appSettings[key] === 'OFF' && el.textContent === 'OFF') {
+      if (currEl === key && appSettings[key] === 'OFF' && (el.textContent === 'OFF' || el.textContent === 'ВЫКЛ')) {
         el.classList.add('lang-active');
         el.previousElementSibling.classList.remove('lang-active');
 
@@ -185,14 +191,65 @@ function getUserSettings() {
           // case key === 'todo':
           //   todoBlock.classList.add('hide-widgets')
           //   break;
-
           default:
             break;
         }
-
       }
     })
   }
 }
 
-// localStorage.removeItem('momentum');
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+const todoBtn = document.querySelector('.todo__btn');
+const closeTodo = document.querySelector('.close-todo');
+const todoContent = document.querySelector('.todo__content');
+const addTodoBtn = document.querySelector('.todo__label');
+const inputTodo = document.querySelector('.input__todo');
+const todoListContainer = document.querySelector('.todo-list');
+const todoDelete = document.getElementsByClassName('todo__delete');
+
+let todoData = [];
+
+window.addEventListener('load', getTodoData);
+addTodoBtn.addEventListener('click', addTodo);
+addTodoBtn.addEventListener('click', renderTodoList);
+
+Array.from(todoDelete).forEach(el => el.addEventListener('click', deleteTodo));
+
+[todoBtn, closeTodo].forEach(el => el.addEventListener('click', openTodo));
+
+function openTodo() {
+  todoContent.classList.toggle('active__todo');
+  todoBtn.classList.toggle('hide__todo-btn');
+}
+
+function addTodo() {
+  if (!inputTodo.value) return;
+  todoData.push(inputTodo.value);
+  let data = JSON.stringify(todoData);
+  localStorage.setItem('todo', data);
+  console.log(todoDelete)
+}
+
+function deleteTodo() {
+  console.log('del')
+}
+
+function renderTodoList() {
+  todoListContainer.innerHTML = null;
+  todoData.map((el, i) => {
+    todoListContainer.insertAdjacentHTML('beforeend', `<p class="list-item">
+    ${i + 1}. <input class="todo__check" type="checkbox"/> ${el} <button class="todo__delete" type="button">Delete</button></p>`);
+  })
+}
+
+function getTodoData() {
+  todoData = JSON.parse(localStorage.getItem('todo')) ? JSON.parse(localStorage.getItem('todo')) : [];
+  renderTodoList();
+}
+
+// localStorage.removeItem('todo');
+console.log(Array.from(todoDelete))
