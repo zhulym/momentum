@@ -175,8 +175,8 @@ function getUserSettings() {
   } else {
     searchingContainer.classList.add('show-searching');
   }
-
-  // getLinkUnsplash();////////////////////////////////////open later!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // get new BG on load page
+  getLinkUnsplash();
   getLinkFlickr();
 
   for (const key in appSettings) {
@@ -215,9 +215,6 @@ function getUserSettings() {
     })
   }
 }
-
-// localStorage.removeItem('todo');
-// localStorage.removeItem('momentum');
 
 // Самооценка проекта:
 // console.log(`
