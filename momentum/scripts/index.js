@@ -34,14 +34,17 @@ setTimeout(function updateTime() {
 }, 100);
 nameContainer.addEventListener('input', getName);
 window.addEventListener('load', setName);
+
 /* =========================================== SLIDER ============================================ */
 window.addEventListener('load', setBg);
 slideNext.addEventListener('click', getSlideNext)
 slidePrev.addEventListener('click', getSlidePrev)
 sourceItems.forEach(el => el.addEventListener('click', setBg));
+
 /* =========================================== WEATHER =========================================== */
 weatherCity.addEventListener('change', getCityWeather)
 window.addEventListener('load', getWeather);
+
 /* ============================================ QUOTE ============================================ */
 changeQuoteBtn.addEventListener('click', getQuote);
 window.addEventListener('load', getQuote);
@@ -62,6 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
 /* ============================================ Translator ======================================= */
 const langItem = document.querySelectorAll('.lang__item');
 langItem.forEach(el => el.addEventListener('click', changeLang));
+
+/* ============================================ Todo ============================================= */
+window.addEventListener('load', getTodoData);
+addTodoBtn.addEventListener('click', addTodo);
+addTodoBtn.addEventListener('click', renderTodoList);
+todoContent.addEventListener('click', deleteTodo);
+[todoBtn, closeTodo].forEach(el => el.addEventListener('click', openTodo));
 
 /* ============================================ Settings ======================================= */
 const settingsButton = document.querySelector('.settings__button');
@@ -204,15 +214,6 @@ function getUserSettings() {
     })
   }
 }
-
-
-
-/////////////////////////////////////////////////////////////////////////////////
-window.addEventListener('load', getTodoData);
-addTodoBtn.addEventListener('click', addTodo);
-addTodoBtn.addEventListener('click', renderTodoList);
-todoContent.addEventListener('click', deleteTodo);
-[todoBtn, closeTodo].forEach(el => el.addEventListener('click', openTodo));
 
 // localStorage.removeItem('todo');
 // localStorage.removeItem('momentum');

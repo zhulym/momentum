@@ -140,8 +140,8 @@ export function changeVolOnInput() {
   if (vlmRangeVal >= 51) volumeIcon.innerHTML = '<i class="fal fa-volume-up"></i>';
   if (vlmRangeVal <= 50) volumeIcon.innerHTML = '<i class="fal fa-volume-down"></i>';
   if (vlmRangeVal <= 30) volumeIcon.innerHTML = '<i class="fal fa-volume-off"></i>';
-  if (vlmRangeVal === 0) volumeIcon.innerHTML = '<i class="fal fa-volume-mute"></i>';
-  audioItem.volume = this.value / 100;
+  if (vlmRangeVal <= 1) volumeIcon.innerHTML = '<i class="fal fa-volume-mute"></i>';
+  audioItem.volume = vlmRangeVal <= 1 ? 0 : this.value / 100;
 }
 
 export function changeVolOnClick() {
