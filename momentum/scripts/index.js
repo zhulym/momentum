@@ -6,10 +6,11 @@ import { weatherCity, getCityWeather, getWeather } from './components/Weather/we
 import { changeQuoteBtn, getQuote } from './components/Quotes/quotes.js';
 import { listBtn, audioItem, playBtn, prevBtn, nextBtn, audioRange, volumeRange, volumeIcon, handleListBtn, showProgress, handleNext, playStop, handlePrev, updateAudioProgress, changeVolOnInput, changeVolOnClick } from './components/Audio/audio.js';
 import { changeLang } from './components/Translator/translator.js';
+import { getTodoData, addTodo, renderTodoList, deleteTodo, openTodo, addTodoBtn, todoContent, todoBtn, closeTodo } from './components/Todo/todo.js';
 
 let appSettings = {
-  lang: '',
-  source: '',
+  lang: 'EN',
+  source: 'Github',
   time: '',
   date: '',
   greeting: '',
@@ -18,6 +19,11 @@ let appSettings = {
   player: '',
   todo: '',
 }
+
+// Set default settings on first page loading
+window.addEventListener('load', function () {
+  if (localStorage.getItem("momentum") === null) localStorage.setItem('momentum', JSON.stringify(appSettings));
+});
 
 /* ======================================= GREETING - DATE - TIME ================================*/
 setTimeout(function updateTime() {
@@ -151,9 +157,9 @@ function getUserSettings() {
   appSettings = JSON.parse(localStorage.getItem('momentum'));
   sourceItems.forEach(el => {
     el.classList.remove('lang-active');
-    appSettings.source === el.textContent ? el.classList.add('lang-active') : null;
+    appSettings?.source === el.textContent ? el.classList.add('lang-active') : null;
   });
-  if (appSettings.source === 'Github') {
+  if (appSettings?.source === 'Github') {
     searchingContainer.classList.remove('show-searching');
   } else {
     searchingContainer.classList.add('show-searching');
@@ -202,64 +208,14 @@ function getUserSettings() {
 
 
 /////////////////////////////////////////////////////////////////////////////////
-
-const todoBtn = document.querySelector('.todo__btn');
-const closeTodo = document.querySelector('.close-todo');
-const todoContent = document.querySelector('.todo__content');
-const addTodoBtn = document.querySelector('.todo__label');
-const inputTodo = document.querySelector('.input__todo');
-const todoListContainer = document.querySelector('.todo-list');
-const todoDelete = document.getElementsByClassName('todo__delete');
-
-let todoData = [];
-
 window.addEventListener('load', getTodoData);
 addTodoBtn.addEventListener('click', addTodo);
 addTodoBtn.addEventListener('click', renderTodoList);
-
 todoContent.addEventListener('click', deleteTodo);
-
 [todoBtn, closeTodo].forEach(el => el.addEventListener('click', openTodo));
 
-function openTodo() {
-  todoContent.classList.toggle('active__todo');
-  todoBtn.classList.toggle('hide__todo-btn');
-}
-
-function addTodo() {
-  if (!inputTodo.value) return;
-  todoData.push(inputTodo.value);
-  saveTodoList();
-  inputTodo.value = '';
-}
-
-function deleteTodo(e) {
-  let currentId = Number(e.target.parentNode.firstElementChild.textContent);
-  if (e.target.className === 'todo__delete') {
-    todoData = todoData.filter((el, i) => i + 1 !== currentId);
-    renderTodoList();
-    saveTodoList();
-  }
-}
-
-function renderTodoList() {
-  todoListContainer.innerHTML = null;
-  todoData.map((el, i) => {
-    todoListContainer.insertAdjacentHTML('beforeend', `<p class="list-item">
-    <span>${i + 1}</span>. <input class="todo__check" type="checkbox"/> ${el} <button class="todo__delete" type="button">${appSettings.lang === 'EN' ? 'Delete' : 'Удалить'}</button></p>`);
-  })
-}
-
-function getTodoData() {
-  todoData = JSON.parse(localStorage.getItem('todo')) ? JSON.parse(localStorage.getItem('todo')) : [];
-  renderTodoList();
-}
-
-function saveTodoList() {
-  let data = JSON.stringify(todoData);
-  localStorage.setItem('todo', data);
-}
 // localStorage.removeItem('todo');
+// localStorage.removeItem('momentum');
 
 // Самооценка проекта:
 // console.log(`

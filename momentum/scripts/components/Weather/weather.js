@@ -13,7 +13,7 @@ let appSettings = JSON.parse(localStorage.getItem('momentum'));
 export async function getWeather() {
   try {
     let storage = localStorage.getItem('city');
-    weatherLang = appSettings.lang === 'EN' ? 'EN' : 'RU'
+    weatherLang = appSettings?.lang === 'EN' ? 'EN' : 'RU'
 
     langForWeather.forEach(el => el.classList.contains('lang-active') && el.textContent === 'РУС' ? weatherLang = 'RU' : 'EN');
     currentCity = (storage || storage === '') ? storage : weatherLang === 'EN' ? 'Minsk' : 'Минск';

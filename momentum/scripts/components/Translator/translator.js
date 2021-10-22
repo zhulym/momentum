@@ -13,7 +13,7 @@ const todoBtn = document.querySelector('.todo__btn');
 const todoLabel = document.querySelector('.todo__label');
 
 let appSettings = JSON.parse(localStorage.getItem('momentum'));
-let isEnLang = appSettings.lang === 'EN' ? true : false;
+let isEnLang = appSettings?.lang === 'EN' ? true : false;
 
 window.addEventListener('load', setLangSetting);
 
@@ -121,13 +121,13 @@ function translateTitles() {
 }
 
 function setLangSetting() {
-  if (appSettings.lang === 'РУС') isEnLang = false;   // change lang flag
+  if (appSettings?.lang === 'РУС') isEnLang = false;   // change lang flag
   else isEnLang = true;
 
   langItem.forEach(el => el.classList.remove('lang-active'));    // clean and change active lang switcher
   langItem.forEach(el => {
-    if (el.textContent === 'РУС' && appSettings.lang === 'РУС') el.classList.add('lang-active');
-    if (el.textContent === 'EN' && appSettings.lang === 'EN') el.classList.add('lang-active');
+    if (el.textContent === 'РУС' && appSettings?.lang === 'РУС') el.classList.add('lang-active');
+    if (el.textContent === 'EN' && appSettings?.lang === 'EN') el.classList.add('lang-active');
   });
 
   translateSwitchers();

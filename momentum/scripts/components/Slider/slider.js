@@ -123,6 +123,6 @@ function setNewTag() {
 function setCurrentSource() {
   let appSettings = JSON.parse(localStorage.getItem('momentum'));
   // if (appSettings.source !== 'Github') {
-  currentSource = appSettings.source;
+  currentSource = appSettings?.source;
   // }
 }
