@@ -23,7 +23,7 @@ export function changeLang(e) {
   settingsHeading.textContent = isEnLang ? 'Настройки' : 'Settings';
   widgetsHeading.textContent = isEnLang ? 'Показать/скрыть виджеты' : 'Show/Hide widgets';
   todoBtn.textContent = isEnLang ? 'Список дел' : 'Todo';
-  todoLabel.textContent = isEnLang ? 'Добавить' : 'Add New Todo';
+  todoLabel.textContent = isEnLang ? 'Добавить' : 'Add Todo';
   handleActiveLang(e);
   getWeather(e);
   showGreeting();
@@ -136,5 +136,5 @@ function setLangSetting() {
   settingsHeading.textContent = !isEnLang ? 'Настройки' : 'Settings';
   widgetsHeading.textContent = !isEnLang ? 'Показать/скрыть виджеты' : 'Show/Hide widgets';
   todoBtn.textContent = !isEnLang ? 'Список дел' : 'Todo';
-  todoLabel.textContent = !isEnLang ? 'Добавить' : 'Add New Todo';
+  todoLabel.textContent = !isEnLang ? 'Добавить' : 'Add Todo';
 }

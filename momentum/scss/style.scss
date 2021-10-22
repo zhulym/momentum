@@ -39,7 +39,7 @@ li {
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  height: 25vh;
+  height: 35vh;
   min-height: 220px;
   padding: 20px;
 }
@@ -482,8 +482,8 @@ a {
   text-align: left;
   position: relative;
   z-index: 5;
-  width: 35vw;
-  min-height: 30vh;
+  width: 25vw;
+  min-height: 20vh;
   background-color: hsla(214, 52%, 30%, 0.582);
   border-radius: 7px;
   transform: translateY(-200%); ////////
@@ -634,7 +634,7 @@ a {
 
 .settings__container {
   width: 25%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
   display: flex;
@@ -732,6 +732,48 @@ a {
 }
 
 /*==================================== Media =================================*/
+@media (max-width: 1200px) {
+  .player__logo span {
+    display: none;
+  }
+
+  .background__settings {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .settings__title {
+    text-align: center;
+  }
+  .settings__switchers {
+    text-align: center;
+  }
+}
+
+@media (max-width: 992px) {
+  .volume__range-wrap {
+    display: none !important;
+  }
+  .todo__container {
+    font-size: 0.8rem;
+  }
+
+  .list-item {
+    margin: 5px 0;
+  }
+
+  .settings__container {
+    font-size: 0.8rem;
+  }
+  .settings__descr {
+    flex-direction: column;
+    margin: 0.5rem 0;
+  }
+  .input__todo {
+    width: 100%;
+    margin-top: 3px;
+  }
+}
+
 @media (max-width: 768px) {
   .time {
     min-height: 80px;
@@ -750,5 +792,78 @@ a {
   .name {
     font-size: 32px;
     padding: 5px;
+  }
+
+  .player__logo,
+  .humidity,
+  .audio__progress,
+  .weather-icon,
+  .weather-description,
+  .wind {
+    display: none;
+  }
+
+  .city {
+    width: auto;
+    height: auto;
+  }
+
+  .weather {
+    min-height: 0;
+    width: 50%;
+  }
+  .temperature {
+    margin-top: 3px;
+  }
+  .todo__content {
+    width: auto;
+  }
+}
+
+@media (max-width: 540px) {
+  body {
+    background-size: 300vh;
+  }
+  .time {
+    min-height: 50px;
+    font-size: 48px;
+  }
+
+  .greeting-container {
+    min-height: 30px;
+    font-size: 20px;
+  }
+
+  .greeting {
+    padding: 3px;
+  }
+
+  .name {
+    font-size: 20px;
+    padding: 3px;
+  }
+  .volume__progress {
+    display: none;
+  }
+
+  .todo__content {
+    transform: translateY(-300%);
+  }
+  .city {
+    width: 100%;
+    padding: 0px;
+    border: none;
+  }
+
+  .weather {
+    width: 100%;
+  }
+
+  .todo__container {
+    width: 50%;
+  }
+  .settings__container {
+    width: 40%;
+    height: 100%;
   }
 }
