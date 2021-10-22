@@ -2,21 +2,24 @@ const greetingContainer = document.querySelector('.greeting');
 export const langForGreeting = document.querySelectorAll('.lang__item');
 let greetingLang;
 export const nameContainer = document.querySelector('.name');
+let appSettings = JSON.parse(localStorage.getItem('momentum'));
 
 export const getName = () => {
   localStorage.setItem('userName', nameContainer.value);
 }
 
 export function changePlaceholder(e) {
-  if (e.target.textContent === 'RU') {
-    nameContainer.placeholder = '[Введите имя...]';
-  } else {
-    nameContainer.placeholder = '[Enter name...]';
-  }
+  if (appSettings?.lang === 'EN') nameContainer.placeholder = '[Enter name...]';
+  else nameContainer.placeholder = '[Введите имя...]';
+
+  if (!e) return;
+
+  if (e.target.textContent === 'РУС') nameContainer.placeholder = '[Введите имя...]';
+  else nameContainer.placeholder = '[Enter name...]';
 }
 
 export const setName = () => {
-  nameContainer.value = `${localStorage.getItem('userName')}`;
+  nameContainer.value = localStorage.getItem('userName') === null ? '' : `${localStorage.getItem('userName')}`;
 }
 
 export const showGreeting = () => {

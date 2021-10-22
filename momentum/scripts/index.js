@@ -170,11 +170,15 @@ function getUserSettings() {
     el.classList.remove('lang-active');
     appSettings?.source === el.textContent ? el.classList.add('lang-active') : null;
   });
+
   if (appSettings?.source === 'Github') {
     searchingContainer.classList.remove('show-searching');
   } else {
     searchingContainer.classList.add('show-searching');
   }
+
+  changePlaceholder();
+
   // get new BG on load page
   getLinkUnsplash();
   getLinkFlickr();
@@ -215,6 +219,12 @@ function getUserSettings() {
     })
   }
 }
+
+localStorage.removeItem('momentum')
+localStorage.removeItem('todo')
+localStorage.removeItem('hasCodeRunBefore')
+localStorage.removeItem('userName')
+localStorage.removeItem('userName')
 
 console.log(`
 Самооценка: \n

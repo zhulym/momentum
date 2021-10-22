@@ -5,7 +5,6 @@ export const addTodoBtn = document.querySelector('.todo__label');
 const inputTodo = document.querySelector('.input__todo');
 const todoListContainer = document.querySelector('.todo-list');
 const todoDelete = document.getElementsByClassName('todo__delete');
-// const todoCheck = document.getElementsByClassName('todo__check');
 
 let todoData = [];
 let appSettings = JSON.parse(localStorage.getItem('momentum'));
