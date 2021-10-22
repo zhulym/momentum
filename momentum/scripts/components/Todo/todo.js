@@ -5,6 +5,7 @@ export const addTodoBtn = document.querySelector('.todo__label');
 const inputTodo = document.querySelector('.input__todo');
 const todoListContainer = document.querySelector('.todo-list');
 const todoDelete = document.getElementsByClassName('todo__delete');
+// const todoCheck = document.getElementsByClassName('todo__check');
 
 let todoData = [];
 let appSettings = JSON.parse(localStorage.getItem('momentum'));
@@ -15,7 +16,6 @@ export function openTodo() {
 }
 
 export function addTodo() {
-  debugger
   if (!inputTodo.value) return;
   todoData.push(inputTodo.value);
   saveTodoList();
@@ -47,4 +47,17 @@ export function getTodoData() {
 function saveTodoList() {
   let data = JSON.stringify(todoData);
   localStorage.setItem('todo', data);
+}
+
+export function completeTodo(e) {
+  if (e.target.type === 'checkbox') {
+    if (!e.target.checked) {
+      e.target.parentNode.style.textDecoration = "none";
+      e.target.parentNode.style.color = "#ffffff";
+    } else {
+      e.target.parentNode.style.textDecoration = "line-through";
+      e.target.parentNode.style.color = "#ffffff7e";
+    }
+    console.dir(e.target)
+  }
 }

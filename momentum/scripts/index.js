@@ -6,7 +6,7 @@ import { weatherCity, getCityWeather, getWeather } from './components/Weather/we
 import { changeQuoteBtn, getQuote } from './components/Quotes/quotes.js';
 import { listBtn, audioItem, playBtn, prevBtn, nextBtn, audioRange, volumeRange, volumeIcon, handleListBtn, showProgress, handleNext, playStop, handlePrev, updateAudioProgress, changeVolOnInput, changeVolOnClick } from './components/Audio/audio.js';
 import { changeLang } from './components/Translator/translator.js';
-import { getTodoData, addTodo, renderTodoList, deleteTodo, openTodo, addTodoBtn, todoContent, todoBtn, closeTodo } from './components/Todo/todo.js';
+import { getTodoData, addTodo, renderTodoList, deleteTodo, openTodo, addTodoBtn, todoContent, todoBtn, closeTodo, completeTodo } from './components/Todo/todo.js';
 
 let appSettings = {
   lang: 'EN',
@@ -71,6 +71,7 @@ window.addEventListener('load', getTodoData);
 addTodoBtn.addEventListener('click', addTodo);
 addTodoBtn.addEventListener('click', renderTodoList);
 todoContent.addEventListener('click', deleteTodo);
+todoContent.addEventListener('click', completeTodo);
 [todoBtn, closeTodo].forEach(el => el.addEventListener('click', openTodo));
 
 /* ============================================ Settings ======================================= */
@@ -289,6 +290,7 @@ function getUserSettings() {
 //   - список создан, по кнопке плавно открывается и закрывается +3
 //   - можно добавлять дела в список +3
 //   - можно удалять дела из списка +3
+//   - можно отмечать выполненные дела +3
 //   - список дел сохраняется и отрисовывается после перезагрузки страницы +3
 
 // Итого: 160.

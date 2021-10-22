@@ -14,8 +14,12 @@ export async function getWeather() {
   try {
     let storage = localStorage.getItem('city');
     weatherLang = appSettings?.lang === 'EN' ? 'EN' : 'RU'
-
-    langForWeather.forEach(el => el.classList.contains('lang-active') && el.textContent === 'РУС' ? weatherLang = 'RU' : 'EN');
+    langForWeather.forEach(el => {
+      if (el.classList.contains('lang-active')) {
+        weatherLang = el.textContent;
+        if (weatherLang === 'РУС') weatherLang = 'RU';
+      }
+    })
     currentCity = (storage || storage === '') ? storage : weatherLang === 'EN' ? 'Minsk' : 'Минск';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=${weatherLang}&appid=3c06443cc386f2d22606bf6d85515307&units=metric`;
     const res = await fetch(url);

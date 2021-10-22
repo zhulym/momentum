@@ -1,0 +1,313 @@
+/*==================================== Player =================================*/
+.player__container {
+  background-color: rgba(37, 71, 116, 0.582);
+  width: 40%;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 5px;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.controls__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  border-radius: 10px;
+  padding: 1rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.player-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-column-gap: 5px;
+          column-gap: 5px;
+}
+
+.audio__progress {
+  position: relative !important;
+  width: 65% !important;
+  -webkit-box-flex: 0.75 !important;
+      -ms-flex-positive: 0.75 !important;
+          flex-grow: 0.75 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.progress__range {
+  -webkit-appearance: none !important;
+  width: 100% !important;
+  height: 8px !important;
+  border-radius: 5px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  outline: none !important;
+  opacity: 0.7;
+  margin-left: 1rem !important;
+}
+
+.progress__range::after {
+  content: "" !important;
+  position: absolute !important;
+  width: 0% !important;
+  height: 10px !important;
+  border-radius: 10rem !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+}
+
+.progress__range::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  cursor: pointer !important;
+}
+
+.progress__range::-moz-range-thumb {
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  cursor: pointer !important;
+}
+
+.play-list__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.song__title {
+  position: absolute;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-size: 0.7rem;
+  margin-right: 10px;
+  top: -5%;
+  left: 5%;
+}
+
+.time__current {
+  position: absolute;
+  top: 80%;
+  left: 5%;
+  font-size: 0.8rem;
+}
+
+.time__end {
+  position: absolute;
+  right: 0%;
+  top: 80%;
+  font-size: 0.8rem;
+}
+
+.track-wrap.active {
+  color: #56cace !important;
+}
+
+.player__logo span {
+  font-size: 2.4rem;
+  position: relative;
+  top: -35%;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.player__logo img {
+  opacity: 0.2;
+}
+
+.volume__icon i {
+  color: #c7cbcd;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  margin-left: 2rem;
+  text-shadow: none;
+}
+
+.fal.fa-volume-up {
+  color: #c7cbcd;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  margin-left: 2rem;
+  text-shadow: none;
+}
+
+.volume__progress {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.volume__range-wrap {
+  display: block !important;
+}
+
+.volume__range {
+  -webkit-appearance: none !important;
+  width: 100% !important;
+  height: 8px !important;
+  border-radius: 5px !important;
+  background: #fff !important;
+  outline: none !important;
+  opacity: 0.7;
+}
+
+.volume__range::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  cursor: pointer !important;
+}
+
+.volume__range::-moz-range-thumb {
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  cursor: pointer !important;
+}
+
+.play-list {
+  text-align: left;
+  list-style-type: none;
+}
+
+.play-list li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8rem;
+  max-height: 1.5rem;
+}
+
+.play-list button {
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+}
+
+.play-item {
+  position: relative;
+  padding: 5px;
+  padding-left: 20px;
+  list-style: none;
+  opacity: 0.8;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.play-item:hover {
+  opacity: 1;
+}
+
+.play-item::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-weight: 900;
+}
+
+.item-active::before {
+  color: #c5b358;
+}
+
+.player-icon {
+  color: transparent;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.player-icon,
+.slider-icon,
+.change-quote {
+  width: 32px;
+  height: 32px;
+  background-size: 32px 32px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  opacity: 0.8;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.player-icon:hover,
+.slider-icon:hover,
+.change-quote:hover {
+  opacity: 1;
+}
+
+.player-icon:active,
+.slider-icon:active,
+.change-quote:active {
+  border: 0;
+  outline: 0;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.play {
+  width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+  background-image: url("../assets/svg/play.svg");
+}
+
+.pause {
+  background-image: url("../assets/svg/pause.svg");
+}
+
+.play-prev {
+  background-image: url("../assets/svg/play-prev.svg");
+}
+
+.play-next {
+  background-image: url("../assets/svg/play-next.svg");
+}
+
+.play-range {
+  margin-left: 10px;
+}
+/*# sourceMappingURL=audio.css.map */
