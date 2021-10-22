@@ -220,12 +220,6 @@ function getUserSettings() {
   }
 }
 
-localStorage.removeItem('momentum')
-localStorage.removeItem('todo')
-localStorage.removeItem('hasCodeRunBefore')
-localStorage.removeItem('userName')
-localStorage.removeItem('userName')
-
 console.log(`
 Самооценка: \n
 1. Часы и календарь (+15)
