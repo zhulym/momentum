@@ -3,7 +3,8 @@
   src: url("../assets/fonts/Arial-MT.woff");
 }
 
-@import "../scripts/components/Todo/todo", "../scripts/components/Audio/audio.scss";
+@import "../scripts/components/Todo/todo";
+@import "../scripts/components/Audio/audio";
 
 * {
   box-sizing: border-box;
@@ -320,6 +321,7 @@ a {
 
 .searching__container {
   opacity: 0;
+  visibility: hidden;
 }
 
 .searching-query {
@@ -353,9 +355,11 @@ a {
 
 .hide-widgets {
   opacity: 0;
+  visibility: hidden;
 }
 .searching__container.show-searching {
   opacity: 1;
+  visibility: visible;
 }
 
 /*==================================== Media =================================*/
